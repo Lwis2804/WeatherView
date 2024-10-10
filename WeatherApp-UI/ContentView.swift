@@ -15,7 +15,9 @@ struct ContentView: View {
                            endPoint: .bottomLeading)
                 .edgesIgnoringSafeArea(.all)
             VStack{
-                Text("CDMX, MEXICO").font(.system(size: 32, weight: .medium, design: .default))
+                Text("CDMX, MEXICO").font(.system(size: 32,
+                                                  weight: .medium,
+                                                  design: .default))
                     .foregroundColor(.white)
                     .padding()
                 VStack(spacing: 8){
@@ -28,8 +30,30 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .bold))
                         .foregroundColor(.white)
                 }
+                HStack(spacing: 4){
+                    VStack(spacing: 4){
+                        Text("MON").font(.system(size: 16,
+                                                 weight: .medium,
+                                                 design: .default))
+                        .foregroundColor(.white)
+                        .padding()
+                        VStack(spacing:4) {
+                            Image(systemName: "cloud.sun.rain.fill")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 40, height: 40)
+                            Text("15°").font(.system(size: 20,
+                                                     weight: .medium,
+                                                     design: .default))
+                            .foregroundColor(.white)
+                            .padding()
+                        }
+                    }
+                }
                 Spacer()
             }
+         
         }
     }
 }
