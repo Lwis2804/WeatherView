@@ -13,13 +13,13 @@ struct ContentView: View {
             LinearGradient(gradient: Gradient(colors: [.blue, .white]),
                            startPoint: .topLeading,
                            endPoint: .bottomLeading)
-                .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.all)
             VStack{
                 Text("CDMX, MEXICO").font(.system(size: 32,
                                                   weight: .medium,
                                                   design: .default))
-                    .foregroundColor(.white)
-                    .padding()
+                .foregroundColor(.white)
+                .padding()
                 VStack(spacing: 8){
                     Image(systemName: "cloud.sun.fill") // imagen + modifiers
                         .renderingMode(.original) //mantener el color original
@@ -30,34 +30,56 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .bold))
                         .foregroundColor(.white)
                 }
-                HStack(spacing: 4){
-                    VStack(spacing: 4){
-                        Text("MON").font(.system(size: 16,
-                                                 weight: .medium,
-                                                 design: .default))
-                        .foregroundColor(.white)
-                        .padding()
-                        VStack(spacing:4) {
-                            Image(systemName: "cloud.sun.rain.fill")
-                                .renderingMode(.original)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 40, height: 40)
-                            Text("15°").font(.system(size: 20,
-                                                     weight: .medium,
-                                                     design: .default))
-                            .foregroundColor(.white)
-                            .padding()
-                        }
-                    }
+                
+                Spacer()
+                
+                HStack(spacing: 6){
+                    WeatherDayView(dayOfTheWeek: "MON",
+                                   imageName: "cloud.sun.rain.fill",
+                                   temperature: 16)
+                    WeatherDayView(dayOfTheWeek: "TUE",
+                                   imageName: "sun.horizon.fill",
+                                   temperature: 23)
+                    WeatherDayView(dayOfTheWeek: "WEN",
+                                   imageName: "sun.max.fill",
+                                   temperature: 30)
+                    WeatherDayView(dayOfTheWeek: "THU",
+                                   imageName: "wind",
+                                   temperature: 10)
+                    WeatherDayView(dayOfTheWeek: "FRI",
+                                   imageName: "snowflake",
+                                   temperature: 2)
                 }
                 Spacer()
             }
-         
         }
     }
 }
 
 #Preview {
     ContentView()
+}
+
+
+struct WeatherDayView: View {
+    
+    var dayOfTheWeek :String
+    var imageName: String
+    var temperature: Int
+    
+    var body: some View {
+        VStack(spacing: 4){
+            Text(dayOfTheWeek).font(.system(size: 16, weight: .medium,design: .default))
+                .foregroundColor(.white)
+                .padding()
+            Image(systemName: imageName)
+                .renderingMode(.original)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+            Text("\(temperature)°").font(.system(size: 28,weight: .medium, design: .default))
+                .foregroundColor(.white)
+                .padding()
+        }
+    }
 }
