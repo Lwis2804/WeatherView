@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .white]),
+            LinearGradient(gradient: Gradient(colors: [.blue, Color("lightBlue")]),
                            startPoint: .topLeading,
                            endPoint: .bottomLeading)
             .edgesIgnoringSafeArea(.all)
@@ -30,8 +30,7 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .bold))
                         .foregroundColor(.white)
                 }
-                
-                Spacer()
+                .padding(.bottom, 40) //Marco del Vstack
                 
                 HStack(spacing: 6){
                     WeatherDayView(dayOfTheWeek: "MON",
@@ -49,6 +48,13 @@ struct ContentView: View {
                     WeatherDayView(dayOfTheWeek: "FRI",
                                    imageName: "snowflake",
                                    temperature: 2)
+                }
+                Spacer()
+                
+                Button{
+                    print("tapped")
+                } label: {
+                    Text("Change Day Time")
                 }
                 Spacer()
             }
