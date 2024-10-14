@@ -38,12 +38,9 @@ struct ContentView: View {
                 Button{
                     print("tapped")
                 } label: {
-                    Text("Change Day Time")
-                        .frame(width: 280, height: 50)
-                        .background(Color.white)
-                        .font(.system(size: 26, weight: .bold , design: .rounded))
-                        .cornerRadius(10)
-
+                    WeatherButton(buttonTitle: "Change Day Time",
+                                  backGroundColor: .white,
+                                  textColor: .blue)
                 }
                 Spacer()
             }
@@ -119,5 +116,22 @@ struct mainWeatherStatusView: View {
                 .foregroundColor(.white)
         }
         .padding(.bottom, 40) //Marco del Vstack
+    }
+}
+
+
+struct WeatherButton: View{
+    var buttonTitle: String
+    var backGroundColor: Color
+    var textColor: Color
+    
+    
+    var body: some View{
+        Text("Change Day Time")
+            .frame(width: 280, height: 50)
+            .background(backGroundColor)
+            .foregroundColor(textColor)
+            .font(.system(size: 26, weight: .bold , design: .rounded))
+            .cornerRadius(10)
     }
 }
