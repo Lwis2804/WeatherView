@@ -13,17 +13,8 @@ struct ContentView: View {
             BackgroundView(topColor: .blue, bottomColor: Color("lightBlue"))
             VStack{
                 cityName(cityName: "CDMX")
-                VStack(spacing: 8){
-                    Image(systemName: "cloud.sun.fill") // imagen + modifiers
-                        .renderingMode(.original) //mantener el color original
-                        .resizable() //cambiar el tamanio original
-                        .aspectRatio(contentMode: .fit) //ajustar al frame
-                        .frame(width: 180, height: 180) //definir tamanio de frame
-                    Text("24°")
-                        .font(.system(size: 70, weight: .bold))
-                        .foregroundColor(.white)
-                }
-                .padding(.bottom, 40) //Marco del Vstack
+                mainWeatherStatusView(imageName: "cloud.sun.fill",
+                                      temperature: 22)
                 
                 HStack(spacing: 6){
                     WeatherDayView(dayOfTheWeek: "MON",
@@ -109,5 +100,24 @@ struct cityName: View {
                                           design: .default))
         .foregroundColor(.white)
         .padding()
+    }
+}
+
+struct mainWeatherStatusView: View {
+    var imageName: String
+    var temperature: Int
+    
+    var body: some View{
+        VStack(spacing: 8){
+            Image(systemName: imageName) // imagen + modifiers
+                .renderingMode(.original) //mantener el color original
+                .resizable() //cambiar el tamanio original
+                .aspectRatio(contentMode: .fit) //ajustar al frame
+                .frame(width: 180, height: 180) //definir tamanio de frame
+            Text("\(temperature)°")
+                .font(.system(size: 70, weight: .bold))
+                .foregroundColor(.white)
+        }
+        .padding(.bottom, 40) //Marco del Vstack
     }
 }
