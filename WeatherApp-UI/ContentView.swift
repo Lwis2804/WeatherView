@@ -10,13 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            BackgroundView()
+            BackgroundView(topColor: .blue, bottomColor: Color("lightBlue"))
             VStack{
-                Text("CDMX, MEXICO").font(.system(size: 32,
-                                                  weight: .medium,
-                                                  design: .default))
-                .foregroundColor(.white)
-                .padding()
+                cityName(cityName: "CDMX")
                 VStack(spacing: 8){
                     Image(systemName: "cloud.sun.fill") // imagen + modifiers
                         .renderingMode(.original) //mantener el color original
@@ -93,10 +89,25 @@ struct WeatherDayView: View {
 }
 
 struct BackgroundView: View {
+    
+    var topColor: Color
+    var bottomColor: Color
+    
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [.blue, Color("lightBlue")]),
+        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]),
                        startPoint: .topLeading,
                        endPoint: .bottomLeading)
         .edgesIgnoringSafeArea(.all)
+    }
+ }
+
+struct cityName: View {
+    var cityName : String
+    var body: some View {
+        Text(cityName).font(.system(size: 32,
+                                          weight: .medium,
+                                          design: .default))
+        .foregroundColor(.white)
+        .padding()
     }
 }
