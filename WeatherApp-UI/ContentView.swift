@@ -9,17 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isNigth = false // boolean para cambiar el estado de ls vista
+    @State private var isNigth = false // boolean para cambiar el estado de la vista
     
 
     var body: some View {
         ZStack {
-            BackgroundView(topColor: isNigth ? .black :  .blue,
-                           bottomColor: isNigth ? .gray : Color("lightBlue"))
+            BackgroundView(isNight: $isNigth) //$ es para hacer un boinding entre el private var isNight y el @Bining var isNoight del BackgroundView
             VStack{
                 cityName(cityName: "CDMX")
-                mainWeatherStatusView(imageName: "cloud.sun.fill",
-                                      temperature: 22)
+                mainWeatherStatusView(imageName: isNigth ? "moon.stars.fill" : "cloud.sun.fill",
+                                      temperature: isNigth ? 13 : 22)
                 
                 HStack(spacing: 6){
                     WeatherDayView(dayOfTheWeek: "MON",
@@ -83,11 +82,11 @@ struct WeatherDayView: View {
 
 struct BackgroundView: View {
     
-    var topColor: Color
-    var bottomColor: Color
+    @Binding var isNight: Bool
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]),
+        LinearGradient(gradient: Gradient(colors: [isNight ? .black :  .blue,
+                                                   isNight ? .gray : Color("lightBlue")]),
                        startPoint: .topLeading,
                        endPoint: .bottomLeading)
         .edgesIgnoringSafeArea(.all)
