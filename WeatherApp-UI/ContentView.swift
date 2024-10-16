@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isNigth = false // boolean para cambiar el estado de ls vista
+    
+
     var body: some View {
         ZStack {
-            BackgroundView(topColor: .blue, bottomColor: Color("lightBlue"))
+            BackgroundView(topColor: isNigth ? .black :  .blue,
+                           bottomColor: isNigth ? .gray : Color("lightBlue"))
             VStack{
                 cityName(cityName: "CDMX")
                 mainWeatherStatusView(imageName: "cloud.sun.fill",
@@ -36,7 +41,7 @@ struct ContentView: View {
                 Spacer()
                 
                 Button{
-                    print("tapped")
+                    isNigth.toggle()
                 } label: {
                     WeatherButton(buttonTitle: "Change Day Time",
                                   backGroundColor: .white,
@@ -120,18 +125,4 @@ struct mainWeatherStatusView: View {
 }
 
 
-struct WeatherButton: View{
-    var buttonTitle: String
-    var backGroundColor: Color
-    var textColor: Color
-    
-    
-    var body: some View{
-        Text("Change Day Time")
-            .frame(width: 280, height: 50)
-            .background(backGroundColor)
-            .foregroundColor(textColor)
-            .font(.system(size: 26, weight: .bold , design: .rounded))
-            .cornerRadius(10)
-    }
-}
+
